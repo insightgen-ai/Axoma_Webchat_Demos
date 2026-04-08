@@ -1,0 +1,1364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AXM Airlines | Book Your Next Adventure</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Open+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #f39248;
+            --primary-dark: #e65100;
+            --primary-light: #e8f0fe;
+            --secondary: #ff6d00;
+            --secondary-dark: #e65100;
+            --light: #f8f9fa;
+            --dark: #212529;
+            --gray: #6c757d;
+            --light-gray: #e9ecef;
+            --success: #28a745;
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        .navbar {
+            padding: 1rem 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            background-color: white;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            font-size: 1.8rem;
+            color: var(--primary) !important;
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            margin: 0 0.5rem;
+            color: var(--dark) !important;
+            transition: color 0.3s;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary) !important;
+        }
+        
+        .hero-section {
+            background: linear-gradient(rgb(232 45 26 / 55%), rgb(70 13 161 / 0%)), url('https://images.unsplash.com/photo-1436491865332-7a61a109cc05?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 70px 0;
+            margin-bottom: 20px;
+        }
+        
+        .hero-content {
+            max-width: 700px;
+        }
+        
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            opacity: 0.9;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-secondary {
+            background-color: var(--secondary);
+            border-color: var(--secondary);
+            padding: 0.75rem 2rem;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--secondary-dark);
+            border-color: var(--secondary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        
+        .btn-outline-light:hover {
+            color: var(--primary);
+        }
+        
+        .search-box {
+            background: white;
+            border-radius: 12px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin-top: 2rem;
+        }
+        
+        .form-control, .form-select {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+        }
+        
+        .form-label {
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+        }
+        
+        .features-section {
+            color: #f8f9fa;
+            background: linear-gradient(rgb(115 114 114 / 66%), rgb(255 255 255 / 0%)), url('https://images.unsplash.com/photo-1556388158-158ea5ccacbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            padding: 80px 0;
+        }
+        
+        .feature-card {
+            transition: transform 0.3s;
+            border: none;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            padding: 2rem 1.5rem;
+            text-align: center;
+            height: 100%;
+            background: white;
+            color: #212529;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        }
+        
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        .flight-card {
+            border: 1px solid var(--light-gray);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            transition: all 0.3s;
+            background: white;
+        }
+        
+        .flight-card:hover {
+            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+            border-color: var(--primary);
+        }
+
+        .bg-light {
+            --bs-bg-opacity: 1;
+            background-color: rgba(232, 240, 254, 0.7) !important;
+        }
+        
+        .flight-price {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .flight-time {
+            font-size: 1.4rem;
+            font-weight: 600;
+        }
+        
+        .flight-duration {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .booking-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .step-number {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--light-gray);
+            color: var(--dark);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1.5rem;
+            font-weight: 700;
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .step-active .step-number {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .confirmation-card {
+            border-left: 5px solid var(--primary);
+            padding-left: 2rem;
+            border-radius: 8px;
+        }
+        
+        .destination-card {
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s;
+            margin-bottom: 2rem;
+            background:white;
+        }
+        
+        .destination-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .destination-img {
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .destination-content {
+            padding: 1.5rem;
+        }
+        
+        .contact-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, rgba(26, 115, 232, 0.05) 0%, rgba(255, 109, 0, 0.05) 100%);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            position: relative;
+        }
+        
+        .section-title:after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background: var(--primary);
+            margin: 1rem auto;
+            border-radius: 2px;
+        }
+        
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+            padding: 3rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        
+        .contact-form-container {
+            flex: 1.5;
+            min-width: 300px;
+            padding: 3rem;
+        }
+        
+        .contact-info h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+        
+        .contact-info h3:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 3px;
+            background: var(--secondary);
+        }
+        
+        .contact-details {
+            margin-top: 2rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .contact-text h5 {
+            margin-bottom: 0.25rem;
+            font-size: 1.1rem;
+        }
+        
+        .contact-text p {
+            margin: 0;
+            opacity: 0.9;
+        }
+        
+        .social-links {
+            display: flex;
+            margin-top: 2rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            margin-right: 10px;
+            transition: all 0.3s ease;
+            color: white;
+            text-decoration: none;
+        }
+        
+        .social-links a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+            position: relative;
+        }
+        
+        .form-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--dark);
+            display: block;
+        }
+        
+        .form-control {
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s;
+            font-size: 1rem;
+        }
+        
+        .form-control:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            outline: none;
+        }
+        
+        .form-row {
+            display: flex;
+            flex-wrap: wrap;
+            margin: 0 -10px;
+        }
+        
+        .form-col {
+            flex: 1;
+            min-width: 250px;
+            padding: 0 10px;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            border-color: var(--primary);
+            padding: 0.75rem 2.5rem;
+            font-weight: 600;
+            transition: all 0.3s;
+            border-radius: 8px;
+            font-size: 1.1rem;
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            border-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+        
+        .submit-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            margin-top: 1rem;
+        }
+        
+        .form-header {
+            margin-bottom: 2rem;
+        }
+        
+        .form-header h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .form-header p {
+            color: var(--gray);
+        }
+        
+        .floating-label {
+            position: relative;
+            margin-bottom: 1.5rem;
+        }
+        
+        .floating-input {
+            padding: 1rem 1rem;
+            border: 1px solid var(--light-gray);
+            border-radius: 8px;
+            width: 100%;
+            transition: all 0.3s;
+            font-size: 1rem;
+            background: transparent;
+            z-index: 1;
+            position: relative;
+        }
+        
+        .floating-label-text {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            color: var(--gray);
+            transition: all 0.3s;
+            pointer-events: none;
+            background: white;
+            padding: 0 5px;
+            z-index: 0;
+        }
+
+        .chatbot-container{
+          background: #28a745;  
+        }
+        
+        .floating-input:focus + .floating-label-text,
+        .floating-input:not(:placeholder-shown) + .floating-label-text {
+            top: -0.5rem;
+            left: 0.8rem;
+            font-size: 0.8rem;
+            color: var(--primary);
+            font-weight: 500;
+            z-index: 2;
+        }
+        
+        .floating-input:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 115, 232, 0.2);
+            outline: none;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 12px;
+            padding: 2.5rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        
+        footer {
+            background: linear-gradient(to right, #a10d0d, #e19b5d);
+            color: white;
+            padding: 4rem 0 1rem;
+        }
+        
+        .footer-heading {
+            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        .footer-heading:after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 40px;
+            height: 2px;
+            background: white;
+        }
+        
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+        }
+        
+        .social-icons a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 0.5rem;
+            transition: all 0.3s;
+        }
+        
+        .social-icons a:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+        }
+        
+        .copyright {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 1rem;
+            margin-top: 1rem;
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .hero-section {
+                padding: 80px 0;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://axoma.s3.eu-west-1.amazonaws.com/axoma-ui-webchat/0.0.1/ai-chatbot.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-plane me-2"></i>AXM Airlines
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#destinations">Destinations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+                <div class="d-flex">
+                    <a href="#search" class="btn btn-primary">Book Now</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Homepage Hero Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">Hi, where would you like to go?</h1>
+                <p class="hero-subtitle">Discover amazing destinations around the world with our premium flight services. We offer comfort, safety, and the best prices for your travel needs.</p>
+                <a href="#search" class="btn btn-light btn-lg me-3">Book Your Flight</a>
+                <a href="#destinations" class="btn btn-outline-light btn-lg">Explore Destinations</a>
+            </div>
+            
+            <!-- Flight Search Box -->
+            <div class="search-box">
+                <form id="flightSearchForm">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label for="from" class="form-label">From</label>
+                            <select class="form-select" id="from" required>
+                                <option value="" selected disabled>Select departure city</option>
+                                <option value="JFK">New York (JFK)</option>
+                                <option value="LAX">Los Angeles (LAX)</option>
+                                <option value="LHR">London (LHR)</option>
+                                <option value="CDG">Paris (CDG)</option>
+                                <option value="DXB">Dubai (DXB)</option>
+                                <option value="SIN">Singapore (SIN)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="to" class="form-label">To</label>
+                            <select class="form-select" id="to" required>
+                                <option value="" selected disabled>Select arrival city</option>
+                                <option value="JFK">New York (JFK)</option>
+                                <option value="LAX">Los Angeles (LAX)</option>
+                                <option value="LHR">London (LHR)</option>
+                                <option value="CDG">Paris (CDG)</option>
+                                <option value="DXB">Dubai (DXB)</option>
+                                <option value="SIN">Singapore (SIN)</option>
+                            </select>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="departure" class="form-label">Departure Date</label>
+                            <input type="date" class="form-control" id="departure" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="return" class="form-label">Return Date (Optional)</label>
+                            <input type="date" class="form-control" id="return">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="passengers" class="form-label">Passengers</label>
+                            <select class="form-select" id="passengers">
+                                <option value="1">1 Passenger</option>
+                                <option value="2" selected>2 Passengers</option>
+                                <option value="3">3 Passengers</option>
+                                <option value="4">4 Passengers</option>
+                                <option value="5">5+ Passengers</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4">
+                            <label for="class" class="form-label">Class</label>
+                            <select class="form-select" id="class">
+                                <option value="economy" selected>Economy</option>
+                                <option value="premium">Premium Economy</option>
+                                <option value="business">Business</option>
+                                <option value="first">First Class</option>
+                            </select>
+                        </div>
+                        <div class="col-md-4 d-flex align-items-end">
+                            <button type="submit" class="btn btn-primary w-100 py-3">
+                                <i class="fas fa-search me-2"></i>Search Flights
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features-section">
+        <div class="container">
+            <h2 class="section-title">Why Fly With AXM?</h2>
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h4>Safe & Secure</h4>
+                        <p>Your safety is our top priority. We follow the highest safety standards with regular maintenance and trained crew.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-tags"></i>
+                        </div>
+                        <h4>Best Prices</h4>
+                        <p>We guarantee the best prices with our price match promise. No hidden fees, just transparent pricing.</p>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="feature-card">
+                        <div class="feature-icon">
+                            <i class="fas fa-headset"></i>
+                        </div>
+                        <h4>24/7 Support</h4>
+                        <p>Our customer service team is available around the clock to assist you with any queries or concerns.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Popular Destinations -->
+    <section id="destinations" class="py-5 bg-light">
+        <div class="container">
+            <h2 class="section-title">Popular Destinations</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://www.gokite.travel/wp-content/uploads/2021/05/Dubai-City-Tour-with-Burj-Khalifa-5-1-870x480.webp" class="destination-img w-100" alt="New York">
+                        <div class="destination-content">
+                            <h4>Dubai</h4>
+                            <p>The city that never sleeps. Explore iconic landmarks and vibrant culture.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-primary fw-bold">From $299</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1533929736458-ca588d08c8be?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img w-100" alt="London">
+                        <div class="destination-content">
+                            <h4>London</h4>
+                            <p>Historic charm meets modern vibrancy in this iconic European capital.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-primary fw-bold">From $449</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="destination-card">
+                        <img src="https://images.unsplash.com/photo-1546436836-07a91091f160?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" class="destination-img w-100" alt="Paris">
+                        <div class="destination-content">
+                            <h4>Paris</h4>
+                            <p>The city of lights, romance, and unparalleled art and cuisine and culture.</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <span class="text-primary fw-bold">From $399</span>
+                                <a href="#" class="btn btn-sm btn-outline-primary">Book Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Flight Search Results -->
+    <section id="search" class="py-5 d-none">
+        <div class="container">
+            <h2 class="section-title">Available Flights</h2>
+            
+            <!-- Web Component Integration -->
+            <div class="mb-5">
+                <div class="card border-0 shadow">
+                    <div class="card-header bg-primary text-white py-3">
+                        <h4 class="mb-0"><i class="fas fa-plane me-2"></i>Select Your Flight</h4>
+                    </div>
+                    <div class="card-body p-4">
+                        <div class="flight-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-2 text-center">
+                                    <div class="flight-time">08:00</div>
+                                    <div class="flight-duration">JFK</div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <i class="fas fa-plane text-primary fa-2x"></i>
+                                    <div class="flight-duration">2h 30m</div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="flight-time">10:30</div>
+                                    <div class="flight-duration">LAX</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>AXM Airlines</h5>
+                                    <div class="flight-duration">Flight SW123 • Boeing 737</div>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    <div class="flight-price">$299</div>
+                                    <button class="btn btn-primary mt-2 px-4" onclick="selectFlight('SW123')">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flight-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-2 text-center">
+                                    <div class="flight-time">14:15</div>
+                                    <div class="flight-duration">JFK</div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <i class="fas fa-plane text-primary fa-2x"></i>
+                                    <div class="flight-duration">2h 45m</div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="flight-time">17:00</div>
+                                    <div class="flight-duration">LAX</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>AXM Airlines</h5>
+                                    <div class="flight-duration">Flight SW456 • Airbus A320</div>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    <div class="flight-price">$349</div>
+                                    <button class="btn btn-primary mt-2 px-4" onclick="selectFlight('SW456')">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="flight-card">
+                            <div class="row align-items-center">
+                                <div class="col-md-2 text-center">
+                                    <div class="flight-time">19:30</div>
+                                    <div class="flight-duration">JFK</div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <i class="fas fa-plane text-primary fa-2x"></i>
+                                    <div class="flight-duration">2h 35m</div>
+                                </div>
+                                <div class="col-md-2 text-center">
+                                    <div class="flight-time">22:05</div>
+                                    <div class="flight-duration">LAX</div>
+                                </div>
+                                <div class="col-md-3">
+                                    <h5>AXM Airlines</h5>
+                                    <div class="flight-duration">Flight SW789 • Boeing 787</div>
+                                </div>
+                                <div class="col-md-3 text-end">
+                                    <div class="flight-price">$279</div>
+                                    <button class="btn btn-primary mt-2 px-4" onclick="selectFlight('SW789')">Select</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section id="booking" class="py-5 bg-light d-none">
+        <div class="container">
+            <h2 class="section-title">Complete Your Booking</h2>
+            
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- Booking Steps -->
+                    <div class="mb-5">
+                        <div class="booking-step step-active">
+                            <div class="step-number">1</div>
+                            <div>
+                                <h5 class="mb-0">Passenger Details</h5>
+                                <p class="mb-0 text-muted">Enter passenger information</p>
+                            </div>
+                        </div>
+                        <div class="booking-step">
+                            <div class="step-number">2</div>
+                            <div>
+                                <h5 class="mb-0">Payment</h5>
+                                <p class="mb-0 text-muted">Secure payment processing</p>
+                            </div>
+                        </div>
+                        <div class="booking-step">
+                            <div class="step-number">3</div>
+                            <div>
+                                <h5 class="mb-0">Confirmation</h5>
+                                <p class="mb-0 text-muted">Booking confirmation</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Passenger Details Form -->
+                    <div class="card border-0 shadow">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0"><i class="fas fa-user me-2"></i>Passenger Information</h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <form id="passengerForm">
+                                <div class="row g-3">
+                                    <div class="col-md-6">
+                                        <label for="firstName" class="form-label">First Name</label>
+                                        <input type="text" class="form-control" id="firstName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="lastName" class="form-label">Last Name</label>
+                                        <input type="text" class="form-control" id="lastName" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="email" class="form-label">Email</label>
+                                        <input type="email" class="form-control" id="email" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="phone" class="form-label">Phone</label>
+                                        <input type="tel" class="form-control" id="phone" required>
+                                    </div>
+                                    <div class="col-md-12">
+                                        <label for="address" class="form-label">Address</label>
+                                        <input type="text" class="form-control" id="address" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="city" class="form-label">City</label>
+                                        <input type="text" class="form-control" id="city" required>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <label for="zip" class="form-label">ZIP/Postal Code</label>
+                                        <input type="text" class="form-control" id="zip" required>
+                                    </div>
+                                    <div class="col-12 mt-4">
+                                        <button type="submit" class="btn btn-primary btn-lg px-5">
+                                            Continue to Payment <i class="fas fa-arrow-right ms-2"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Booking Summary -->
+                <div class="col-md-4">
+                    <div class="card border-0 shadow sticky-top" style="top: 100px;">
+                        <div class="card-header bg-white py-3">
+                            <h5 class="mb-0"><i class="fas fa-receipt me-2"></i>Booking Summary</h5>
+                        </div>
+                        <div class="card-body">
+                            <div class="mb-4">
+                                <h6>Flight Details</h6>
+                                <div id="selectedFlightDetails">
+                                    <!-- Flight details will be populated here -->
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <h6>Passengers</h6>
+                                <div id="passengerCount">2 Passengers</div>
+                            </div>
+                            <div>
+                                <h6>Price Breakdown</h6>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Base Fare</span>
+                                    <span id="baseFare">$558</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Taxes & Fees</span>
+                                    <span id="taxes">$84</span>
+                                </div>
+                                <div class="d-flex justify-content-between mb-2">
+                                    <span>Service Charge</span>
+                                    <span id="service">$15</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between fw-bold fs-5">
+                                    <span>Total</span>
+                                    <span id="totalPrice">$657</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Confirmation Section -->
+    <section id="confirmation" class="py-5 d-none">
+        <div class="container">
+            <div class="text-center mb-5">
+                <i class="fas fa-check-circle text-success fa-5x mb-3"></i>
+                <h2>Booking Confirmed!</h2>
+                <p class="lead">Your flight has been successfully booked. We've sent your e-ticket to your email.</p>
+            </div>
+            
+            <div class="row justify-content-center">
+                <div class="col-md-10">
+                    <div class="card confirmation-card border-0 shadow">
+                        <div class="card-body p-5">
+                            <h4 class="card-title mb-4">Booking Details</h4>
+                            
+                            <div class="row mb-4">
+                                <div class="col-md-6 mb-3">
+                                    <strong>Booking Reference:</strong> SW7X9B2
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Flight:</strong> <span id="confirmationFlight">SW123</span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Route:</strong> New York (JFK) to Los Angeles (LAX)
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Date:</strong> <span id="confirmationDate">2023-10-15</span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Departure:</strong> 08:00
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Arrival:</strong> 10:30
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Passengers:</strong> 2
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <strong>Total Paid:</strong> $657
+                                </div>
+                            </div>
+                            
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle me-2"></i>
+                                Your e-ticket has been sent to your email. Please check-in online 24 hours before departure.
+                            </div>
+                            
+                            <div class="text-center mt-4">
+                                <button class="btn btn-primary me-3 px-4" onclick="printConfirmation()">
+                                    <i class="fas fa-print me-1"></i> Print Confirmation
+                                </button>
+                                <button class="btn btn-outline-primary px-4" onclick="goHome()">
+                                    <i class="fas fa-home me-1"></i> Back to Home
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+     <!-- Contact Section -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Get In Touch</h3>
+                    <p>We're here to help with any questions about our flights, services, or anything else. Reach out to us and we'll respond as soon as we can.</p>
+                    
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Our Location</h5>
+                                <p>123 Aviation Avenue, New York, NY 10001</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-phone-alt"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Phone Number</h5>
+                                <p>+1 (800) 123-4567</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Email Address</h5>
+                                <p>support@axm.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="contact-item">
+                            <div class="contact-icon">
+                                <i class="fas fa-clock"></i>
+                            </div>
+                            <div class="contact-text">
+                                <h5>Working Hours</h5>
+                                <p>Monday - Friday: 9:00 - 18:00</p>
+                                <p>Saturday: 10:00 - 16:00</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <div class="form-header">
+                        <h3>Send Us a Message</h3>
+                        <p>Fill out the form below and we'll get back to you shortly.</p>
+                    </div>
+                    
+                    <form id="contactForm">
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="floating-label">
+                                    <input type="text" class="floating-input" id="contactName" placeholder=" " required>
+                                    <label class="floating-label-text" for="contactName">Full Name</label>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="floating-label">
+                                    <input type="email" class="floating-input" id="contactEmail" placeholder=" " required>
+                                    <label class="floating-label-text" for="contactEmail">Email Address</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-col">
+                                <div class="floating-label">
+                                    <input type="tel" class="floating-input" id="contactPhone" placeholder=" ">
+                                    <label class="floating-label-text" for="contactPhone">Phone Number (Optional)</label>
+                                </div>
+                            </div>
+                            <div class="form-col">
+                                <div class="floating-label">
+                                    <input type="text" class="floating-input" id="contactSubject" placeholder=" " required>
+                                    <label class="floating-label-text" for="contactSubject">Subject</label>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="floating-label">
+                                <textarea class="floating-input" id="contactMessage" placeholder=" " required style="height: 150px;"></textarea>
+                                <label class="floating-label-text" for="contactMessage">Your Message</label>
+                            </div>
+                        </div>
+                        
+                        <div class="submit-btn">
+                            <button type="submit" class="btn btn-primary btn-lg">
+                                <i class="fas fa-paper-plane me-2"></i> Send Message
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h3 class="footer-heading">AXM Airlines</h3>
+                    <p>Your trusted partner for comfortable and affordable air travel to destinations worldwide.</p>
+                  <!--   <div class="social-icons mt-4">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div> -->
+                </div>
+                <div class="col-md-2 mb-4">
+                    <h4 class="footer-heading">Quick Links</h4>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Us</a></li>
+                        <li><a href="#destinations">Destinations</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-heading">Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Flight Booking</a></li>
+                        <li><a href="#">Hotel Reservations</a></li>
+                        <li><a href="#">Travel Insurance</a></li>
+                        <li><a href="#">VIP Lounge</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h4 class="footer-heading">Contact Us</h4>
+                    <ul class="footer-links">
+                        <li><i class="fas fa-phone me-2"></i> +1 (800) 123-4567</li>
+                        <li><i class="fas fa-envelope me-2"></i> support@skywings.com</li>
+                        <li><i class="fas fa-map-marker-alt me-2"></i> 123 Aviation Ave, New York, NY</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2023 AXM Airlines. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <axoma-chat-bot
+        title="Axoma Support"
+        subtitle="By using this Bot your chats will be viewed and used by us and our third-party vendors for customer service purposes."
+        welcomeMessage="Hello! 👋 Welcome to the Axoma support. I’m here to help you with any questions or issues you may have."
+        primaryColor = '#3B82F6'
+        accentColor = '#FFF'        
+        background-gradient = 'linear-gradient(to right, rgb(255 251 244), rgb(255 255 255))'
+        font-size='14px'
+        font-color="#f8f8f8ff"
+        title-size="'16px"
+        title-color="#f38356ff"
+        subtitle-color="#080808ff"
+        input-background-color="transparent"
+        input-text-color="#080808ff"
+        input-border-color="#ff7230ff"
+        message-background-color="#fc7e4cff"
+        user-message-background-color="#dd5858ff"
+        bot-message-background-color="#fc7e4cff"
+        bot-message-text-color="#FFF"
+        user-message-text-color="#FFF"
+        chat-sendbutton-color="invert(41%) sepia(93%) saturate(2300%) hue-rotate(354deg)"
+        chatbot-footerbg="#FFF"
+        timestamp-color ="#FFF"
+        chatbot-icon-button-bg="#f38356ff"
+
+        
+        float-button-color="#ffffff"
+        float-button-bg-color="#f39248"
+        float-button-hover-color="#ffffff"
+        float-button-hover-bg-color="#f39248"
+        float-button-size="65px"
+        apiKey='axm-c7a1f3e9b4d26c8f0a5e3b1d9c6f2a4b'
+        appId="d2caf1d9-1380-4acc-9dad-42e0f7c1d411"
+        tenantId="2f664bc2-3f1f-4ece-b9a9-ebea0415e6fd"
+        modelName= "gemini_flash_2"
+        agentId= "83ba7c63-0a28-45e8-a400-0137613b87e0"
+        privacyUrl = "www://goole.com"
+      />
+   
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+     <script>
+        // Flight search form submission
+        document.getElementById('flightSearchForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('search').classList.remove('d-none');
+            
+            // Scroll to results
+            document.getElementById('search').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Passenger form submission
+        document.getElementById('passengerForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            document.getElementById('booking').classList.add('d-none');
+            document.getElementById('confirmation').classList.remove('d-none');
+            
+            // Scroll to confirmation
+            document.getElementById('confirmation').scrollIntoView({ behavior: 'smooth' });
+        });
+        
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! We will get back to you soon.');
+            document.getElementById('contactForm').reset();
+        });
+        
+        // Flight selection function
+        function selectFlight(flightNumber) {
+            // Update booking summary with selected flight
+            document.getElementById('selectedFlightDetails').innerHTML = `
+                <div class="fw-bold">Flight ${flightNumber}</div>
+                <div class="text-muted small">JFK → LAX</div>
+                <div class="text-muted small">08:00 - 10:30</div>
+            `;
+            
+            // Update confirmation page
+            document.getElementById('confirmationFlight').textContent = flightNumber;
+            
+            // Show booking section
+            document.getElementById('search').classList.add('d-none');
+            document.getElementById('booking').classList.remove('d-none');
+            
+            // Scroll to booking
+            document.getElementById('booking').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Print confirmation
+        function printConfirmation() {
+            window.print();
+        }
+        
+        // Go back to home
+        function goHome() {
+            document.getElementById('confirmation').classList.add('d-none');
+            document.getElementById('home').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // Set default dates
+        window.onload = function() {
+            const today = new Date();
+            const tomorrow = new Date(today);
+            tomorrow.setDate(tomorrow.getDate() + 1);
+            
+            document.getElementById('departure').valueAsDate = tomorrow;
+            
+            const nextWeek = new Date(today);
+            nextWeek.setDate(nextWeek.getDate() + 7);
+            document.getElementById('return').valueAsDate = nextWeek;
+            
+            // Set confirmation date
+            document.getElementById('confirmationDate').textContent = tomorrow.toISOString().split('T')[0];
+        };
+    </script>
+    <script src="https://axoma.s3.eu-west-1.amazonaws.com/axoma-ui-webchat/0.0.1/ai-chatbot.umd.js"></script>
+</body>
+</html>

@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>AXOMA | Intelligent Webchat Hub - Electric Grid, Airway, Banking & Electricals</title>
+    <!-- Bootstrap 5 + Icons + Google Fonts -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #f0f2f8;
+            scroll-behavior: smooth;
+        }
+
+        /* AXOMA signature theme: deep electric navy, premium gradients */
+        :root {
+            --axoma-dark: #0A0F1F;
+            --axoma-deep: #0E1A2B;
+            --axoma-electric: #2b7de9;
+            --axoma-glow: #3c8ef5;
+            --axoma-card-bg: rgba(255, 255, 255, 0.96);
+            --axoma-border-glow: rgba(43, 125, 233, 0.3);
+            --axoma-success: #10b981;
+            --axoma-warning: #f59e0b;
+        }
+
+        /* navbar & branding - inspired by attached Axoma image */
+        .navbar-axoma {
+            background: linear-gradient(135deg, #0a0f1f 0%, #0f1a2f 100%);
+            backdrop-filter: blur(2px);
+            border-bottom: 1px solid rgba(43, 125, 233, 0.5);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .navbar-brand {
+            font-weight: 800;
+            font-size: 1.9rem;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #ffffff, #9bc0ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent !important;
+        }
+
+        .brand-bolt {
+            color: #2b7de9;
+            font-weight: 900;
+        }
+
+        .nav-link-custom {
+            color: #ccddf8 !important;
+            font-weight: 500;
+            transition: 0.2s;
+            font-size: 0.95rem;
+        }
+
+        .nav-link-custom:hover {
+            color: white !important;
+            text-shadow: 0 0 4px #2b7de9;
+        }
+
+        /* hero header */
+        .axoma-header {
+            background: linear-gradient(110deg, #071126 0%, #0f1f3a 100%);
+            padding: 2rem 0 2.2rem 0;
+            border-bottom: 1px solid #2b7de933;
+        }
+
+        .axoma-badge {
+            background: rgba(30, 44, 71, 0.9);
+            color: #bfd6ff;
+            border-radius: 40px;
+            padding: 5px 16px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Grid / Cards layout - interactive app cards (no chat embedded) */
+        .app-grid-card {
+            background: var(--axoma-card-bg);
+            border-radius: 32px;
+            border: 1px solid rgba(43, 125, 233, 0.2);
+            box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+            transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+            overflow: hidden;
+            cursor: pointer;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            backdrop-filter: blur(2px);
+        }
+
+        .app-grid-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--axoma-electric);
+            box-shadow: 0 28px 40px -16px rgba(43, 125, 233, 0.35);
+        }
+
+        .card-glow-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #2b7de9, #8bbaff, #2b7de9);
+            opacity: 0;
+            transition: opacity 0.2s;
+        }
+
+        .app-grid-card:hover .card-glow-effect {
+            opacity: 1;
+        }
+
+        .card-icon-wrapper {
+            background: linear-gradient(145deg, #f8faff, #eef3fc);
+            width: 70px;
+            height: 70px;
+            border-radius: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            transition: all 0.2s;
+        }
+
+        .app-grid-card:hover .card-icon-wrapper {
+            background: linear-gradient(145deg, #e9f0fe, #e0eaff);
+            transform: scale(1.02);
+        }
+
+        .card-icon {
+            font-size: 2.6rem;
+            transition: transform 0.2s;
+        }
+
+        .app-title {
+            font-weight: 800;
+            font-size: 1.55rem;
+            letter-spacing: -0.3px;
+            color: #0A1428;
+            margin-bottom: 0.5rem;
+        }
+
+        .app-description {
+            color: #4a5b7a;
+            font-size: 0.9rem;
+            line-height: 1.45;
+            margin-bottom: 1.2rem;
+        }
+
+        .feature-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: auto;
+            margin-bottom: 1rem;
+        }
+
+        .feature-tag {
+            background: #eef3fc;
+            padding: 5px 12px;
+            border-radius: 50px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            color: #1e3a6b;
+        }
+
+        .redirect-hint {
+            font-size: 0.75rem;
+            color: #2b7de9;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(43, 125, 233, 0.08);
+            padding: 6px 12px;
+            border-radius: 40px;
+            width: fit-content;
+            transition: 0.2s;
+        }
+
+        .app-grid-card:hover .redirect-hint {
+            background: rgba(43, 125, 233, 0.18);
+            gap: 10px;
+        }
+
+        /* additional dashboard sections (matching attached image's explore items) */
+        .explore-section {
+            background: #ffffffdb;
+            backdrop-filter: blur(4px);
+            border-radius: 28px;
+            border: 1px solid rgba(43, 125, 233, 0.2);
+        }
+
+        .explore-item {
+            padding: 12px 0;
+            border-bottom: 1px solid #eef2f9;
+            transition: 0.15s;
+        }
+
+        .explore-item:last-child {
+            border-bottom: none;
+        }
+
+        .run-badge {
+            background: #2b7de9;
+            color: white;
+            border-radius: 30px;
+            padding: 4px 12px;
+            font-size: 0.7rem;
+            font-weight: 600;
+            transition: 0.1s;
+        }
+
+        .footer-axoma {
+            background: #0a1428;
+            color: #8e9fc3;
+            border-top: 1px solid #1f2b46;
+        }
+
+        .status-dot {
+            width: 10px;
+            height: 10px;
+            background-color: #2ce080;
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 6px #2ce080;
+            margin-right: 6px;
+        }
+
+        @media (max-width: 768px) {
+            .app-title {
+                font-size: 1.3rem;
+            }
+            .card-icon-wrapper {
+                width: 55px;
+                height: 55px;
+            }
+            .card-icon {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- AXOMA Main Navigation (inspired by reference image) -->
+<nav class="navbar navbar-expand-lg navbar-axoma py-2 sticky-top">
+    <div class="container">
+        <a class="navbar-brand" href="#">
+            <i class="fas fa-bolt me-2" style="color: #2b7de9;"></i>AXOMA
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#axomaNavbar" aria-controls="axomaNavbar" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon" style="filter: invert(1);"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="axomaNavbar">
+            <ul class="navbar-nav ms-auto mb-2 mb-lg-0 gap-2">
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#"><i class="fas fa-chart-line me-1"></i> Explore</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#"><i class="fas fa-file-alt me-1"></i> Documents</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#"><i class="fas fa-users me-1"></i> Team Collab</a></li>
+                <li class="nav-item"><a class="nav-link nav-link-custom" href="#"><i class="fas fa-microchip me-1"></i> AI Agents</a></li>
+            </ul>
+            <div class="ms-3 d-none d-lg-block">
+                <span class="badge bg-primary bg-opacity-25 text-light px-3 py-2 rounded-pill"><i class="fas fa-robot me-1"></i> Electric Core · Live</span>
+            </div>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section with grid theme -->
+<div class="axoma-header">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-8">
+                <div class="axoma-badge mb-3">
+                    <i class="fas fa-plug"></i> Smart Webchat Ecosystem · Industrial-Grade AI
+                </div>
+                <h1 class="text-white fw-bold display-6">Specialized Agent Suites</h1>
+                <p class="text-light-50 mt-2" style="color: #bfd6ff; max-width: 90%;">Electric Powergrid · Axoma Airway · Axoma Banking · Axoma Electricals — dedicated webchat interfaces. Click any card to access the full chatbot experience.</p>
+                <div class="d-flex gap-3 mt-3">
+                    <span class="status-dot"></span><span class="text-light small">4 active domains · 24/7 reasoning</span>
+                </div>
+            </div>
+            <div class="col-lg-4 text-lg-end mt-3 mt-lg-0">
+                <i class="fas fa-network-wired fa-3x" style="color: #3c8ef5; opacity: 0.8;"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container my-5">
+    <!-- Dashboard section: app cards grid exactly for the four webchats -->
+    <div class="d-flex align-items-center justify-content-between mb-4 flex-wrap">
+        <div>
+            <h3 class="fw-bold mb-0" style="color: #0A1428;"><i class="fas fa-comments me-2" style="color: #2b7de9;"></i>Webchat Applications</h3>
+            <p class="text-secondary mt-1 mb-0">Select any domain to launch its dedicated chatbot interface</p>
+        </div>
+        <div class="mt-2 mt-sm-0">
+            <span class="badge bg-dark bg-opacity-10 text-dark px-3 py-2 rounded-pill"><i class="fas fa-arrow-pointer me-1"></i> Click card → redirect</span>
+        </div>
+    </div>
+
+    <div class="row g-4">
+        <!-- 1. Electric Powergrid Webchat Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="app-grid-card" data-redirect="Axoma_Eelectricity_Powergrid_Chatbot.html" data-domain="powergrid">
+                <div class="card-glow-effect"></div>
+                <div class="p-4 d-flex flex-column h-100">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-bolt card-icon" style="color: #eab308;"></i>
+                    </div>
+                    <h4 class="app-title">Powergrid Webchat</h4>
+                    <p class="app-description">Real-time grid telemetry, load forecasting, fault detection & SCADA integration. AI co-pilot for energy distribution.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag"><i class="fas fa-charging-station me-1"></i> Load balancing</span>
+                        <span class="feature-tag"><i class="fas fa-chart-line"></i> Predictive</span>
+                    </div>
+                    <div class="redirect-hint mt-2">
+                        <i class="fas fa-external-link-alt"></i> Launch chatbot →
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. Axoma-Airway Webchat Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="app-grid-card" data-redirect="Axoma-Airway-Chatbot.html" data-domain="airway">
+                <div class="card-glow-effect"></div>
+                <div class="p-4 d-flex flex-column h-100">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-plane card-icon" style="color: #38bdf8;"></i>
+                    </div>
+                    <h4 class="app-title">Axoma-Airway</h4>
+                    <p class="app-description">Flight coordination, weather-aware ATC co-pilot, turbulence prediction & real-time airport intelligence.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag"><i class="fas fa-cloud-sun"></i> METAR insights</span>
+                        <span class="feature-tag"><i class="fas fa-tower-broadcast"></i> ATC assist</span>
+                    </div>
+                    <div class="redirect-hint mt-2">
+                        <i class="fas fa-external-link-alt"></i> Launch chatbot →
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 3. Axoma-Banking Webchat Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="app-grid-card" data-redirect="Axoma-Banking-Chatbot.html" data-domain="banking">
+                <div class="card-glow-effect"></div>
+                <div class="p-4 d-flex flex-column h-100">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-landmark card-icon" style="color: #10b981;"></i>
+                    </div>
+                    <h4 class="app-title">Axoma-Banking</h4>
+                    <p class="app-description">Fraud detection, real-time compliance, transaction monitoring & financial intelligence for institutions.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag"><i class="fas fa-shield-alt"></i> AML shield</span>
+                        <span class="feature-tag"><i class="fas fa-chart-pie"></i> Risk scoring</span>
+                    </div>
+                    <div class="redirect-hint mt-2">
+                        <i class="fas fa-external-link-alt"></i> Launch chatbot →
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 4. Axoma-Electricals Webchat Card -->
+        <div class="col-md-6 col-xl-3">
+            <div class="app-grid-card" data-redirect="Axoma-Electric-Chatbot.html" data-domain="electricals">
+                <div class="card-glow-effect"></div>
+                <div class="p-4 d-flex flex-column h-100">
+                    <div class="card-icon-wrapper">
+                        <i class="fas fa-microchip card-icon" style="color: #f97316;"></i>
+                    </div>
+                    <h4 class="app-title">Axoma-Electricals</h4>
+                    <p class="app-description">Smart device diagnostics, motor protection, energy efficiency & IoT electrical asset management.</p>
+                    <div class="feature-tags">
+                        <span class="feature-tag"><i class="fas fa-waveform"></i> Power quality</span>
+                        <span class="feature-tag"><i class="fas fa-plug"></i> IoT telemetry</span>
+                    </div>
+                    <div class="redirect-hint mt-2">
+                        <i class="fas fa-external-link-alt"></i> Launch chatbot →
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Explore additional services (exactly as attached image reference: Document Summarization, Chanty-Team, Forecast Explainer, Sentiment etc) -->
+    <div class="row mt-5 pt-2">
+        <div class="col-12">
+            <div class="explore-section p-4 shadow-sm">
+                <div class="d-flex align-items-center gap-2 mb-3">
+                    <i class="fas fa-compass fs-4" style="color: #2b7de9;"></i>
+                    <h5 class="fw-bold m-0">Explore · AXOMA ecosystem</h5>
+                    <span class="badge bg-primary bg-opacity-10 text-primary ms-2">agent fleet</span>
+                </div>
+                <div class="row g-2">
+                    <div class="col-md-6 col-lg-4">
+                        <div class="explore-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-file-alt me-2 text-primary"></i> Document Summarization</span>
+                            <span class="run-badge">Run</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="explore-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-video me-2 text-primary"></i> Chanty-Team Collaboration</span>
+                            <span class="run-badge">Run</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="explore-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-chart-simple me-2 text-primary"></i> Forecast Explainer</span>
+                            <span class="run-badge">Run</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="explore-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-face-smile me-2 text-primary"></i> Sentiment Analysis</span>
+                            <span class="run-badge">Run</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="explore-item d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-laptop-code me-2 text-primary"></i> Emoface</span>
+                            <span class="run-badge">Run</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <div class="explore-item d-flex justify-content-between align-items-center">
+                            <span><i class="fab fa-linkedin me-2 text-primary"></i> LinkedIn Post Generator</span>
+                            <span class="run-badge">Run</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="mt-3 pt-2 small text-secondary border-top d-flex justify-content-between">
+                    <span><i class="fas fa-robot me-1"></i> 12+ AI agents ready</span>
+                    <span><i class="fas fa-bolt me-1"></i> realtime inference</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Info banner about redirect behavior (already have pages) -->
+    <div class="alert alert-light mt-4 border-0 bg-white shadow-sm rounded-4 d-flex align-items-center gap-3 flex-wrap">
+        <i class="fas fa-arrow-right-to-bracket fa-2x" style="color: #2b7de9;"></i>
+        <div>
+            <strong class="fs-6">⚡ Dedicated chatbot pages ready</strong><br>
+            Click any card (Powergrid, Airway, Banking, Electricals) — you'll be redirected to the respective webchat interface. 
+            <span class="badge bg-secondary bg-opacity-10 text-dark ms-1">pre-integrated pages: powergrid-chat.html, airway-chat.html, etc.</span>
+        </div>
+    </div>
+</div>
+
+<footer class="footer-axoma py-4 mt-2">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-md-6 text-md-start text-center">
+                <i class="fas fa-bolt me-1" style="color:#2b7de9"></i> <strong>AXOMA</strong> · Industrial-grade AI webchat hub
+                <div class="small mt-1">© 2025 Axoma Intelligence — next-gen agentic grid & sector solutions</div>
+            </div>
+            <div class="col-md-6 text-md-end text-center mt-2 mt-md-0">
+                <span class="me-3"><i class="fas fa-shield-alt"></i> Enterprise ready</span>
+                <span><i class="fas fa-globe"></i> Edge + Cloud</span>
+            </div>
+        </div>
+    </div>
+</footer>
+
+<!-- Bootstrap JS + redirect logic for each card (since separate pages exist for chatbots) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+    // Card click redirection: each card has data-redirect attribute pointing to the specific chatbot page.
+    // In a real scenario, those HTML pages (powergrid-chat.html, airway-chat.html, banking-chat.html, electricals-chat.html)
+    // would contain the full webchat interface. The requirement: "once we click on any app card I have already pages available for chatbot I will redirect"
+    // So we implement robust redirection. Additionally we add console logs and optional confirmation-free redirection.
+    
+    const cards = document.querySelectorAll('.app-grid-card');
+    cards.forEach(card => {
+        // make the entire card clickable
+        card.style.cursor = 'pointer';
+        card.addEventListener('click', (e) => {
+            // avoid accidental if someone clicks inner elements but it's fine
+            e.stopPropagation();
+            const redirectUrl = card.getAttribute('data-redirect');
+            if (redirectUrl) {
+                // simple redirect - as per requirement user has separate pages ready
+                window.location.href = redirectUrl;
+            } else {
+                console.warn('No redirect URL defined for this card');
+                // fallback friendly message
+                alert('Chatbot page will be available soon. (Page mapping ready)');
+            }
+        });
+        
+        // optional: add hover sound effect? no needed. just smooth UX.
+        card.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                const redirectUrl = card.getAttribute('data-redirect');
+                if (redirectUrl) window.location.href = redirectUrl;
+            }
+        });
+        // for accessibility
+        card.setAttribute('tabindex', '0');
+        card.setAttribute('role', 'button');
+        card.setAttribute('aria-label', `Open ${card.querySelector('.app-title')?.innerText || 'webchat'} chatbot page`);
+    });
+    
+    // Also provide a note in console that pages are expected to exist: 
+    // Expected pages: powergrid-chat.html, airway-chat.html, banking-chat.html, electricals-chat.html
+    console.log('AXOMA Dashboard ready — Click on any webchat card to redirect to dedicated chatbot interface (pages assumed present).');
+    console.log('Mock paths: powergrid-chat.html | airway-chat.html | banking-chat.html | electricals-chat.html');
+    
+    // Optional: if any card doesn't have data-redirect due to typo, fallback correction:
+    const cardMappings = {
+        'Powergrid Webchat': 'powergrid-chat.html',
+        'Axoma-Airway': 'airway-chat.html',
+        'Axoma-Banking': 'banking-chat.html',
+        'Axoma-Electricals': 'electricals-chat.html'
+    };
+    
+    cards.forEach(card => {
+        const titleElem = card.querySelector('.app-title');
+        if (titleElem && !card.getAttribute('data-redirect')) {
+            const titleText = titleElem.innerText;
+            if (cardMappings[titleText]) {
+                card.setAttribute('data-redirect', cardMappings[titleText]);
+            }
+        }
+    });
+</script>
+</body>
+</html>
